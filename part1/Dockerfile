@@ -1,13 +1,7 @@
-FROM ruby:3.2.2-alpine3.18
+FROM ruby:2.7
 
 WORKDIR /var/www
 
-COPY src/Gemfile src/Gemfile.lock ./
-RUN gem update --system && \
-    apk add --no-cache --update build-base ruby-dev && \
-    bundle install
+COPY ./src /var/www
 
-COPY src/. .
-
-EXPOSE 4567
-CMD ["rackup", "-p", "4567"]
+CMD ["/bin/bash"]
